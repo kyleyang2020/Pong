@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PaddleMove : MonoBehaviour
 {
-    public float speed = .1f;
-    private float yBorder = 4.5f;
+    [SerializeField] private float speed = .1f;
+    private float yBorder = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +16,14 @@ public class PaddleMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // press up to move the paddle up
-        if(Input.GetKey(KeyCode.UpArrow))
+        // press w to move the paddle up
+        // if paddle is at top of screen dont move past it
+        if (Input.GetKey(KeyCode.UpArrow) && transform.position.y < yBorder)
             transform.position = new Vector2(transform.position.x, transform.position.y + speed);
 
-        // press down to move the paddle down
-        if (Input.GetKey(KeyCode.DownArrow))
+        // press s to move the paddle down
+        // if paddle is at bottom of screen dont move past it
+        if (Input.GetKey(KeyCode.DownArrow) && transform.position.y > -yBorder)
             transform.position = new Vector2(transform.position.x, transform.position.y - speed);
     }
 }
