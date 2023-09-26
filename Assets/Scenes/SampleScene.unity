@@ -475,7 +475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa45b76fac4d8e4fadebe8034be2212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 1032630131}
   speed: 10
   isPlayer1: 0
 --- !u!61 &1032630130
@@ -704,7 +703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa45b76fac4d8e4fadebe8034be2212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 1306404892}
   speed: 10
   isPlayer1: 1
 --- !u!61 &1306404891
@@ -1507,7 +1505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2125395059
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1587,8 +1585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5d82f913aba644187c72431155a5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSpeed: 0.1
-  ySpeed: 0.1
+  speed: 5
   xBorder: 8.5
   yBorder: 4.5
 --- !u!58 &2125395062
@@ -1623,7 +1620,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 11
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 76dcaf9b39921314b80a704e9047bcf7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

@@ -11,13 +11,6 @@ public class BallScore : MonoBehaviour
     [SerializeField] private Text scoreP1;
     [SerializeField] private Text scoreP2;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         // every frame updates the score 

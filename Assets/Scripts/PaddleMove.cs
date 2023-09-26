@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PaddleMove : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rigidBody; // accesses the paddle rigidbody component
     [SerializeField] private float speed; // speed of the paddle movement
     [SerializeField] private bool isPlayer1; // check which paddle is which for 2 player controls
+
+    private Rigidbody2D _rigidBody; // calls the paddle rigidbody component
     private float movement; // # from (-1,1) which dictates the direction of paddle
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        // grabs rigidbody component when script is loaded
+        _rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // checks which player is playing and gives different inputs for each player
@@ -27,7 +27,7 @@ public class PaddleMove : MonoBehaviour
             movement = Input.GetAxisRaw("Vertical2");
 
         // uses the RigidBody2D component to change velocity up and down based off input
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, movement * speed);
+        _rigidBody.velocity = new Vector2(0, movement * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -5,96 +5,33 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    // variable for speed
-    [SerializeField] private float xSpeed;
-    [SerializeField] private float ySpeed;
+    [SerializeField] private float speed; // variable for speed
+    private Rigidbody2D _rigidBody; // calls the paddle rigidbody component
 
-    // variable for borders
-    [SerializeField] private float xBorder;
-    [SerializeField] private float yBorder;
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+    }
 
-    // variable for move state
-    private bool xMove = true;
-    private bool yMove = true;
-
-    // Start is called before the first frame update
     void Start()
     {
-
+        BallLaunch();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void BallLaunch()
     {
-        // horizontal movement
-        if (xMove)
-            transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y); // right
-        else
-            transform.position = new Vector2(transform.position.x - xSpeed, transform.position.y); // left
+        // x axis random, 50/50 chance to go left (-1) or right (1)
+        float x = UnityEngine.Random.value < .5f ? -1f: 1f ;
 
-        // vertical movement
-        if (yMove)
-            transform.position = new Vector2(transform.position.x, transform.position.y + ySpeed); // up
-        else
-            transform.position = new Vector2(transform.position.x, transform.position.y - ySpeed); // down
-    }
+        // y axis random, 50/50 chance to go at different angle
+        // Random.Range give either a neg or pos value for left and right
+        float y = UnityEngine.Random.value < .5f ? 
+            UnityEngine.Random.Range(-1f, 0f) : UnityEngine.Random.Range(0f, 1f);
 
-    // when collision happens if it hits a paddle/player bounce back
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("hit");
-        if(collision.collider.CompareTag("Player"))
-        {
-            if (xMove)
-                xMove = false;
-            else
-                xMove = true;
-        }
+        // uses the new values to add the speed towards that direction
+        // either one works, different ways/functions
 
-        // horizontal movement
-        if (xMove)
-            transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y); // right
-        else
-            transform.position = new Vector2(transform.position.x - xSpeed, transform.position.y); // left
-
-        // vertical movement
-        if (yMove)
-            transform.position = new Vector2(transform.position.x, transform.position.y + ySpeed); // up
-        else
-            transform.position = new Vector2(transform.position.x, transform.position.y - ySpeed); // down
-    }
-
-    private void OldUpdate()
-    {
-        // horizontal movement
-        if (xMove)
-            transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y); // right
-        else
-            transform.position = new Vector2(transform.position.x - xSpeed, transform.position.y); // left
-
-        // vertical movement
-        if (yMove)
-            transform.position = new Vector2(transform.position.x, transform.position.y + ySpeed); // up
-        else
-            transform.position = new Vector2(transform.position.x, transform.position.y - ySpeed); // down
-
-        // checks if ball hits left and give player2 score and bounces ball back
-        if (transform.position.x >= xBorder)
-        {
-            xMove = false;
-        }
-
-        // checks if ball hits right and give player1 score and bounces ball back
-        if (transform.position.x <= -xBorder)
-        {
-            xMove = true;
-        }
-
-        // checks if ball hits top or bottom borders and bounces back
-        if (transform.position.y >= yBorder)
-            yMove = false;
-
-        if (transform.position.y <= -yBorder)
-            yMove = true;
+        // _rigidBody.AddForce(new Vector2(x, y) * speed);
+        _rigidBody.velocity = new Vector2(x * speed, y * speed);
     }
 }
