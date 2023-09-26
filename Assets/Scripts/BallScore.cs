@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BallScore : MonoBehaviour
 {
     int playerOneScore, playerTwoScore; // variable for score
+
     // text components for score
     [SerializeField] private Text scoreP1;
     [SerializeField] private Text scoreP2;

@@ -20,17 +20,22 @@ public class PaddleMove : MonoBehaviour
     {
         // checks which player is playing and gives different inputs for each player
         if(isPlayer1)
-        {
             // accesses Unity input manager has inputs w and s
             movement = Input.GetAxisRaw("Vertical");
-        }
         else
-        {
             // accesses Unity input manager has inputs down and up arrow
             movement = Input.GetAxisRaw("Vertical2");
-        }
 
         // uses the RigidBody2D component to change velocity up and down based off input
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, movement * speed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // if the paddle hits the walls, dont go past it
+        if (isPlayer1)
+            movement = 0;
+        else
+            movement = 0;
     }
 }

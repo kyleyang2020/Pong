@@ -50,6 +50,18 @@ public class BallMovement : MonoBehaviour
             else
                 xMove = true;
         }
+
+        // horizontal movement
+        if (xMove)
+            transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y); // right
+        else
+            transform.position = new Vector2(transform.position.x - xSpeed, transform.position.y); // left
+
+        // vertical movement
+        if (yMove)
+            transform.position = new Vector2(transform.position.x, transform.position.y + ySpeed); // up
+        else
+            transform.position = new Vector2(transform.position.x, transform.position.y - ySpeed); // down
     }
 
     private void OldUpdate()
