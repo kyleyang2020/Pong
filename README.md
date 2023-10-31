@@ -1,3 +1,2 @@
 # Pong
- Simple Pong Game
- The assignment is done.
+ Simple Pong game the assignment is done, for SCI 31920.
